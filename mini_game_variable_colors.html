@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Guessing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input,
+        button {
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Color Guessing Game</h1>
+    <p>Guess a color: red, blue, green, yellow, orange, purple, pink, or brown</p>
+    <input type="text" id="guess">
+    <button onclick="checkGuess()">Guess</button>
+    <button onclick="startNewGame()">New Game</button>
+    <p id="message"></p>
+
+    <script>
+        // List of colors to guess from
+        const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink', 'brown'];
+
+        let secretColor;
+
+        // Function to start a new game
+        function startNewGame() {
+            // Randomly pick a color from the list
+            secretColor = colors[Math.floor(Math.random() * colors.length)];
+
+            // Clear any previous messages and guesses
+            document.getElementById('message').innerText = '';
+            document.getElementById('guess').value = '';
+
+            // Log the secret color to the console for debugging (optional)
+            console.log('New secret color:', secretColor);
+        }
+
+        // Function to check the user's guess
+        function checkGuess() {
+            // Get the user's guess and convert it to lowercase
+            let userGuess = document.getElementById('guess').value.toLowerCase();
+
+            // Check if the user's guess is correct
+            if (userGuess === secretColor) {
+                document.getElementById('message').innerText = `Congratulations! You guessed the correct color: ${secretColor}.`;
+            } else {
+                document.getElementById('message').innerText = 'Wrong guess! Try again.';
+            }
+        }
+
+        // Start a new game when the page loads
+        startNewGame();
+    </script>
+</body>
+
+</html>
